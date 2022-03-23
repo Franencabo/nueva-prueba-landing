@@ -1,0 +1,145 @@
+body {
+    font:400 14px/1 $font-basic;
+    color:$color-text;
+    &.noscroll{
+        overflow:hidden;
+        @include min-small-desktop{
+            padding-right:17px;
+        }
+    }
+    &.resize-on{
+        *{
+            @include transition(none!important);
+            &:before, &:after{
+                @include transition(none!important);
+            }
+        }
+    }
+}
+.wrapper{
+    padding:30px 25px;
+    @include min-medium-tablet{
+        padding:40px;
+    }
+    @include min-full-tablet{
+        max-width:845px;
+        margin:0 auto;
+    }
+    @include min-small-desktop{
+        max-width:1465px;
+        padding:40px 50px;
+    }
+    @include min-full-desktop{
+        padding:50px;
+    }
+}
+
+.module-header{
+    padding-bottom:30px;
+    max-width:925px;
+    .module-header__title{
+        font:400 20px/1.1 $font-basic;
+        color:$color-corp1;
+        padding-bottom:10px;
+    }
+    .module-header__text{
+        font:600 26px/1.1 $font-basic;
+        color:$color-titles;
+    }
+    @include min-medium-tablet{
+        padding-bottom:50px;
+        .module-header__title{
+            font-size:25px;
+            padding-bottom:15px;
+        }
+        .module-header__text{
+            font-size:35px;
+        }
+    }
+    @include min-full-desktop{
+        padding-bottom:70px;
+    }
+}
+
+[data-lazyimg]{
+    background-color:#d7d7d7;
+}
+[data-lazyimg$=".svg"], [data-lazyimg$=".png"]{
+    background-color:transparent;
+}
+
+//* MAIN CORP BTN *//
+.btn-main{
+    position:relative;
+    display:inline-block;
+    text-align:center;
+    overflow:hidden;
+    cursor:pointer;
+    background-color:transparent;
+    padding:0;
+    border-radius:25px;
+    @include transition($Stransition);
+    &.btn-main--white{
+        box-shadow:0 0 20px rgba(#42495B, 0.25);
+        .btn-main__text{
+            background-color:#fff;
+            color:$color-text;
+        }
+    }
+    .btn-main__text{
+        position:relative;
+        z-index:1;
+        display:block;
+        padding:18px 0 17px;
+        font-family:$font-basic;
+        font-size:14px;
+        font-weight:600;
+        color:$color-text;
+        background-color:$color-corp1;
+        min-width:220px;
+        border-radius:25px;
+        @include transition($Stransition);
+    }
+    &:after{
+        content:'';
+        position:absolute;
+        display:block;
+        bottom:0;
+        left:50%;
+        padding-top:0%;
+        width:10%;
+        background-color:$color-corp1-hover;
+        opacity:0;
+        pointer-events:none;
+        border-radius:50%;
+        @include transition($Stransition);
+        @include transform(translateX(-50%) translateY(50%));
+    }
+    @include hovers{
+        .btn-main__text{
+            background-color:transparent;
+        }
+        &:after{
+            @include transform(translateX(-50%) translateY(50%));
+            width:125%;
+            opacity:1;
+            padding-top:100%;
+        }
+    }
+    @include min-medium-tablet{
+        .btn-main__text{
+            min-width:260px;
+        }
+    }
+}
+
+@keyframes bounce {
+  0% { top: 20%; opacity: 0; }
+  5% { top: 20%; opacity: 0; }
+  10% { top: 20%; opacity: 1; }
+  20% { top: 10%; opacity: 1; }
+  40% { top: calc(90% - 6px); opacity: 1; }
+  50% { top: calc(80% - 6px); opacity: 1; }
+  55% { top: calc(80% - 6px); opacity: 0; }
+  100% { top: 20%; opacity: 0; }
+}

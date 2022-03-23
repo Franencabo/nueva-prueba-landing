@@ -1,0 +1,181 @@
+//* FONTS *//
+$font-basic: "Poppins", sans-serif;
+
+//* COLORS *//
+$color-background:#ffffff;
+$color-titles:#42495B;
+$color-text:#42495B;
+$color-corp1:#E7E829;
+$color-corp1-hover:darken($color-corp1, 10%);
+
+//* TRANSITION *//
+$Ltransition:all cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s;
+$Mtransition:all cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.85s;
+$Stransition:all cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.6s;
+
+//* SASS FUNCTIONS *//
+
+// MEDIA QUERYS
+$mobile: 375px;
+$small-tablet: 540px;
+$medium-tablet: 768px;
+$full-tablet: 1024px;
+$small-desktop: 1280px;
+$medium-desktop: 1366px;
+$full-desktop: 1680px;
+$full-big-desktop: 1800px;
+
+@mixin full-big-desktop {
+  @media (max-width: #{$full-big-desktop - 1px}) {
+    @content;
+  }
+}
+@mixin full-desktop {
+  @media (max-width: #{$full-desktop - 1px}) {
+    @content;
+  }
+}
+@mixin medium-desktop {
+  @media (max-width: #{$medium-desktop - 1px}) {
+    @content;
+  }
+}
+@mixin small-desktop {
+  @media (max-width: #{$small-desktop - 1px}) {
+    @content;
+  }
+}
+@mixin full-tablet {
+  @media (max-width: #{$full-tablet - 1px}) {
+    @content;
+  }
+}
+@mixin hovers {
+  @media (min-width: #{$small-desktop}) {
+      &:hover, &:focus{
+          @content;
+      }
+  }
+}
+@mixin medium-tablet {
+  @media (max-width: #{$medium-tablet - 1px}) {
+    @content;
+  }
+}
+@mixin small-tablet {
+  @media (max-width: #{$small-tablet - 1px}) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media (max-width: #{$mobile - 1px}) {
+    @content;
+  }
+}
+
+@mixin min-full-big-desktop {
+  @media (min-width: #{$full-big-desktop}) {
+    @content;
+  }
+}
+@mixin min-full-desktop {
+  @media (min-width: #{$full-desktop}) {
+    @content;
+  }
+}
+@mixin min-medium-desktop {
+  @media (min-width: #{$medium-desktop}) {
+    @content;
+  }
+}
+@mixin min-small-desktop {
+  @media (min-width: #{$small-desktop}) {
+    @content;
+  }
+}
+@mixin min-full-tablet {
+  @media (min-width: #{$full-tablet}) {
+    @content;
+  }
+}
+@mixin min-medium-tablet {
+  @media (min-width: #{$medium-tablet}) {
+    @content;
+  }
+}
+@mixin min-small-tablet {
+  @media (min-width: #{$small-tablet}) {
+    @content;
+  }
+}
+@mixin min-mobile {
+  @media (min-width: #{$mobile}) {
+    @content;
+  }
+}
+
+//* IMG-VIDEO RATIO      (@include responsive-ratio(16,9);) *//
+@mixin responsive-ratio($x,$y, $pseudo: false) {
+    $padding: unquote( ( $y / $x ) * 100 + '%' );
+    @if $pseudo {
+        &:before {
+            @include pseudo($pos: relative);
+            width: 100%;
+            padding-top: $padding;
+        }
+    } @else {
+        padding-top: $padding;
+    }
+}
+
+//* LINE-HEIGHT *//
+@mixin line($pt, $sz){
+    line-height: 100% * ($pt/$sz);
+}
+
+//* LETTER-SPACING *//
+@mixin space($pt){
+    letter-spacing: ($pt/1000);
+}
+
+//* ALL BROWSERS *//
+@mixin appearance($appearance) {
+    -webkit-appearance: $appearance;
+     -moz-appearance: $appearance;
+      -ms-appearance: $appearance;
+        -o-appearance: $appearance;
+          appearance: $appearance;
+}
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+       -moz-border-radius: $radius;
+        -ms-border-radius: $radius;
+         -o-border-radius: $radius;
+            border-radius: $radius;
+}
+
+@mixin transform($transform) {
+    -webkit-transform: $transform;
+       -moz-transform: $transform;
+        -ms-transform: $transform;
+         -o-transform: $transform;
+            transform: $transform;
+}
+
+@mixin transition($transition) {
+    -webkit-transition: $transition;
+       -moz-transition: $transition;
+        -ms-transition: $transition;
+         -o-transition: $transition;
+            transition: $transition;
+}
+
+//* @include input-placeholder {color: $grey;} *//
+@mixin input-placeholder(){
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+    &:-o-input-placeholder { @content; }
+}
